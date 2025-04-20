@@ -1,0 +1,41 @@
+import React from 'react';
+import {
+  StyledSmallBottomImage,
+  StyledSmallTopImage,
+  StyledTallImage,
+  StyledContainer,
+  StyledCentralContainer,
+  StyledMainTitle,
+  StyledButton,
+  StyledImagesContainer,
+  StyledIconButton,
+  StyledSubTitle,
+  StyledHelperText,
+} from './style';
+import { RiArrowDownLine } from '@remixicon/react';
+
+export function HeroSection() {
+  return (
+    <StyledContainer>
+      <StyledTallImage />
+      <StyledCentralContainer>
+        <StyledMainTitle>
+          <span>Privatno</span>
+          <span>parkiranje</span>
+          <span>bez stresa!</span>
+        </StyledMainTitle>
+        <StyledSubTitle>Jednostavni, brzo, sigurno</StyledSubTitle>
+        <StyledButton>Iznajmi parkirno mjesto</StyledButton>
+        <StyledButton>Pronađi parkirno mjesto</StyledButton>
+        <StyledHelperText>Dodatan popust za električna vozila</StyledHelperText>
+        <StyledIconButton href="#zasto-mi">
+          <RiArrowDownLine size={60} />
+        </StyledIconButton>
+      </StyledCentralContainer>
+      <StyledImagesContainer>
+        <StyledSmallTopImage />
+        <StyledSmallBottomImage />
+      </StyledImagesContainer>
+    </StyledContainer>
+  );
+}
