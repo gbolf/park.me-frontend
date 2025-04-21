@@ -3,7 +3,7 @@ type Parking = {
   title: string;
   images: string[];
   tags: ParkingCategories;
-  cooridnate: {
+  coordinates: {
     latitude: number;
     longitude: number;
   };

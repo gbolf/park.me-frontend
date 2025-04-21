@@ -36,12 +36,12 @@ export function MainLayout({ children }: { children: ReactNode }) {
           style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}
           mapStyle={MAPBOX_STYLE}
         >
-          {markerPositions.map((cooridnate) => (
+          {markerPositions.map((coordinates) => (
             <Marker
-              {...cooridnate}
-              {...(typeof cooridnate.onDragEnd === 'function' && {
+              {...coordinates}
+              {...(typeof coordinates.onDragEnd === 'function' && {
                 draggable: true,
-                onDragEnd: cooridnate.onDragEnd,
+                onDragEnd: coordinates.onDragEnd,
               })}
             >
               <div style={{ color: 'red', fontSize: '24px' }}>📍</div>

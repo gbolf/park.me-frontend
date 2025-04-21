@@ -12,7 +12,7 @@ export const useParking = (parkingId: string) => {
       title: 'Zagreb centar 1',
       images: [img1, img2, img3] as string[],
       tags: PARKING_CATEGORIES,
-      cooridnate: {
+      coordinates: {
         latitude: 46.80627942047016,
         longitude: 15.97953767932404,
       },
@@ -33,7 +33,7 @@ export const useMyParkings = () => {
         id: 1,
         images: [img1, img2, img3] as string[],
         tags: PARKING_CATEGORIES,
-        cooridnate: {
+        coordinates: {
           latitude: 46.80627942047016,
           longitude: 15.97953767932404,
         },
@@ -46,7 +46,7 @@ export const useMyParkings = () => {
         images: [img1, img2, img3] as string[],
         tags: PARKING_CATEGORIES,
         id: 1,
-        cooridnate: {
+        coordinates: {
           latitude: 46.80627942047016,
           longitude: 15.97953767932404,
         },
@@ -59,7 +59,7 @@ export const useMyParkings = () => {
         images: [img1, img2, img3] as string[],
         tags: PARKING_CATEGORIES,
         id: 1,
-        cooridnate: {
+        coordinates: {
           latitude: 46.80627942047016,
           longitude: 15.97953767932404,
         },

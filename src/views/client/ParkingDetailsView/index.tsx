@@ -23,9 +23,9 @@ export function ParkingDetailsView() {
   };
 
   useEffect(() => {
-    if (parking?.cooridnate) {
-      mapContext.setMapPostion((old) => ({ ...old, ...parking.cooridnate }));
-      mapContext.setMarkerPositions((old) => [...old, { ...parking.cooridnate }]);
+    if (parking?.coordinates) {
+      mapContext.setMapPostion((old) => ({ ...old, ...parking.coordinates }));
+      mapContext.setMarkerPositions((old) => [...old, { ...parking.coordinates }]);
     }
     // if ('geolocation' in navigator) {
     //   navigator.geolocation.getCurrentPosition(async (pos) => {
