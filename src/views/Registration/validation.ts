@@ -40,7 +40,7 @@ export const validationSchema = Yup.object({
   firstName: Yup.string().when('step', {
     is: 0,
     then: (schema) => schema.required('Ime je obavezno').min(2, 'Ime mora imati najmanje 2 znaka'),
-    otherwise: (schema) => schema.strip(), // izbacuje iz validacije
+    otherwise: (schema) => schema.strip(),
   }),
   lastName: Yup.string().when('step', {
     is: 0,
@@ -49,19 +49,19 @@ export const validationSchema = Yup.object({
   }),
   email: Yup.string().when('step', {
     is: 0,
-    then: (schema) => schema.required('Email je obavezan').email('Email adresa nije validna'),
+    then: (schema) => schema.required('Email je obavezan').email('Email adresa nije ispravna'),
     otherwise: (schema) => schema.strip(),
   }),
   phone: Yup.string().when('step', {
     is: 0,
-    then: (schema) => schema.required('Telefon je obavezan').matches(/^\+?[0-9\s\-]{7,15}$/, 'Telefon nije validan'),
+    then: (schema) => schema.required('Broj mobitela je obavezan').matches(/^\+?[0-9\s\-]{7,15}$/, 'Broj mobitela nije ispravna'),
     otherwise: (schema) => schema.strip(),
   }),
 
   username: Yup.string().when('step', {
     is: 1,
     then: (schema) => schema.required('Korisničko ime je obavezno').min(2, 'Korisničko ime mora imati najmanje 2 znaka'),
-    otherwise: (schema) => schema.strip(), // izbacuje iz validacije
+    otherwise: (schema) => schema.strip(),
   }),
   password: Yup.string().when('step', {
     is: 1,
@@ -91,7 +91,6 @@ export const validationSchema = Yup.object({
     then: () =>
       Yup.object({
         file: Yup.mixed().nullable(),
-        URL: Yup.string().url('URL mora biti validan'),
       }),
     otherwise: () => Yup.object().strip(),
   }),

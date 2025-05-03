@@ -9,20 +9,29 @@ import { createGetProps, validateCurrentStep } from '@common/utils';
 import { TABS } from './components/tabs';
 import { getFieldsForStep, INITIAL_VALUES, validationSchema } from './validation';
 import { enqueueSnackbar } from 'notistack';
+import { useAuth } from '@contexts/auth';
+import { useFileUpload } from '@hooks/file/mutations';
 
 export function Registration() {
   const navigate = useNavigate();
+  const useFileUploadMutation = useFileUpload();
+  const { register } = useAuth();
 
   const formik = useFormik({
     onSubmit: async (values, { setSubmitting }) => {
       setSubmitting(true);
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      enqueueSnackbar('Registracija je uspješna');
-      navigate(buildLink('login'));
+      const { url } = await useFileUploadMutation.mutateAsync(values.profileImage.file);
+      const success = (await register({ ...values, profileImage: url })) || false;
+      if (success) {
+        enqueueSnackbar('Registracija je uspješna');
+        navigate(buildLink('login'));
+      } else {
+        enqueueSnackbar('Registracija nije uspješna', { variant: 'error' });
+      }
       setSubmitting(false);
     },
     initialValues: INITIAL_VALUES,
-    validationSchema: validationSchema,
+    validationSchema,
   });
 
   const handleNext = async () => {
@@ -42,7 +51,7 @@ export function Registration() {
         Registracija
       </Typography>
       {TABS.map((Component, idx) => (
-        <Fade in={formik.values.step === idx} unmountOnExit timeout={{ exit: 0, enter: 600 }} key={idx}>
+        <Fade in={formik.values.step === idx} unmountOnExit key={idx}>
           <span>
             <Component getProps={getProps} formik={formik} />
           </span>

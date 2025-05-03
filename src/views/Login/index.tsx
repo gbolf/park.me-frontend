@@ -15,11 +15,11 @@ export function Login() {
     onSubmit: (values, { setSubmitting }) => {
       setSubmitting(true);
       if (login(values)) {
-        navigate(buildLink('dashboard'));
+       // navigate(buildLink('dashboard'));
       }
       setSubmitting(false);
     },
-    initialValues: { email: '', passowrd: '' },
+    initialValues: { email: '', password: '' },
   });
 
   return (
@@ -28,7 +28,7 @@ export function Login() {
         <Typography variant="h1">Prijava</Typography>
         <Box>
           <TextField variant="filled" label="Email" placeholder="ivan.horvat@google.com" value={values.email} onChange={handleChange} name="email" />
-          <TextField variant="filled" label="Lozink" placeholder="********" value={values.passowrd} onChange={handleChange} name="passowrd" type="password" />
+          <TextField variant="filled" label="Lozinka" placeholder="********" value={values.password} onChange={handleChange} name="password" type="password" />
 
           <Button fullWidth variant="contained" onClick={() => handleSubmit()}>
             Prijavi se
