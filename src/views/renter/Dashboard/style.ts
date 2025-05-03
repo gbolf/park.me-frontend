@@ -1,10 +1,11 @@
 import { styled } from '@mui/system';
 import { Card, CardContent, CardMedia } from '@mui/material';
-import { BASE_GLASS_STYLE, StyledBaseGlassBox } from '../../../components/style';
+import { StyledBaseGlassBox } from '@components/style';
+
 
 export const StyledSideContainer = styled(StyledBaseGlassBox)({
   width: '100%',
-  overflow: 'auto',
+  height: 'unset',
 });
 
 export const StyledCard = styled(Card)({
@@ -17,6 +18,7 @@ export const StyledCard = styled(Card)({
     transform: 'scale(1.02)',
   },
 });
+
 export const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   position: 'relative',
   height: '100%',
@@ -43,6 +45,7 @@ export const StyledCardContent = styled(CardContent)({
   bottom: 0,
   left: 0,
   width: 'calc(100% - 30px)',
+  boxSizing: 'border-box',
   backgroundColor: '#FFFFFF',
   zIndex: 2,
 });
