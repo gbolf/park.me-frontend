@@ -1,13 +1,13 @@
 import React, { ReactNode, useEffect } from 'react';
-import { StyledContainer } from './style';
+import { StyledEmptyContainer } from './style';
 import { useMapContext } from '@contexts/map';
 
-export function MainLayout({ children }: { children: ReactNode }) {
+export function EmptyLayout({ children }: { children: ReactNode }) {
   const { setIsActive } = useMapContext();
   useEffect(() => {
     setIsActive(true);
     return () => setIsActive(false);
   }, []);
-
-  return <StyledContainer>{children}</StyledContainer>;
+  
+  return <StyledEmptyContainer>{children}</StyledEmptyContainer>;
 }
