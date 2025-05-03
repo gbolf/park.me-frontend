@@ -57,10 +57,11 @@ export const BASE_GLASS_STYLE = {
 };
 
 export const StyledBaseGlassBox = styled(Box)({
+  boxSizing: 'border-box',
   borderRadius: '15px',
   padding: 20,
   height: '100%',
-  width: 'min(100%, 600px)',
+  width: 'min(100%, 800px)',
   zIndex: 2,
   ...BASE_GLASS_STYLE,
 });

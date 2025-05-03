@@ -4,7 +4,7 @@ import { createGetProps } from '@common/utils';
 import { useMapboxSearchByCoordinates } from '@hooks/address/mutations';
 import { useMapboxSearch } from '@hooks/address/queries';
 import { MarkerDragEvent } from 'react-map-gl/mapbox';
-import { useMapContext } from '../../../layouts/MainLayout';
+import { useMapContext } from '@contexts/map';
 import { FormikProps } from 'formik';
 import { useDropzone } from 'react-dropzone';
 import { RiUploadCloud2Line } from '@remixicon/react';
@@ -14,9 +14,7 @@ function BasicInfo({ getProps }: { getProps: ReturnType<typeof createGetProps> }
   return (
     <Grid container spacing={1} my={3}>
       <Grid size={12} my={1}>
-        <Typography variant="subtitle1" fontWeight="600">
-          Osnovni podatci
-        </Typography>
+        <Typography variant="subtitle1">Osnovni podatci</Typography>
       </Grid>
       <Grid size={{ xs: 12, sm: 6 }}>
         <TextField {...getProps('firstName', 'Ime', 'Ivan')} />
@@ -38,9 +36,7 @@ function UserProfileInfo({ getProps }: { getProps: ReturnType<typeof createGetPr
   return (
     <Grid container spacing={1} my={3}>
       <Grid size={12} my={1}>
-        <Typography variant="subtitle1" fontWeight="600">
-          Postavljanje profil
-        </Typography>
+        <Typography variant="subtitle1">Postavljanje profil</Typography>
       </Grid>
       <Grid size={12}>
         <TextField {...getProps('username', 'Korisničko ime', 'ivan.horvat123')} />
@@ -89,9 +85,7 @@ function AddressInfo({ getProps, formik }: { formik: FormikProps<any>; getProps:
   return (
     <Grid container spacing={1} my={3}>
       <Grid size={12} mb={1}>
-        <Typography variant="subtitle1" fontWeight="600">
-          Adresa stanovanje
-        </Typography>
+        <Typography variant="subtitle1">Adresa stanovanje</Typography>
       </Grid>
       <Grid size={12}>
         <Typography variant="subtitle2">Unesite dio adrese</Typography>
@@ -106,6 +100,7 @@ function AddressInfo({ getProps, formik }: { formik: FormikProps<any>; getProps:
           onChange={(_, value) => formik.setFieldValue('address', value)}
           fullWidth
           loadingText="Učitavanje"
+          size="small"
           noOptionsText="Lokacija nije pronađena"
           onInputChange={(_, value) => setAddressQuery(value)}
           inputValue={addressQuery}
@@ -138,16 +133,14 @@ function ImageUpload({ formik }: { formik: FormikProps<any> }) {
     formik.setFieldValue('profileImage.URL', URL.createObjectURL(file));
   };
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, disabled: formik.values.step != 2 });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, disabled: formik.values.step != 3 });
 
   return (
     <Grid container spacing={1} my={3} sx={{ height: '100%' }}>
       <Grid size={12} mb={1}>
-        <Typography variant="subtitle1" fontWeight="600">
-          Profilna slika
-        </Typography>
+        <Typography variant="subtitle1">Profilna slika</Typography>
       </Grid>
-      <Grid size={12} sx={{ height: '100%' }}>
+      <Grid size={12} sx={{ height: '100%', cursor: 'pointer' }}>
         <StyledDropZone {...getRootProps()} imageURL={formik.values.profileImage.URL}>
           <input {...getInputProps()} />
           <RiUploadCloud2Line size={50} />

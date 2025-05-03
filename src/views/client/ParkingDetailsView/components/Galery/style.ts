@@ -1,4 +1,4 @@
-import { styled } from '@mui/system';
+import { height, styled } from '@mui/system';
 import { Box } from '@mui/material';
 import { BASE_GLASS_STYLE } from '../../../../../components/style';
 
@@ -22,11 +22,17 @@ export const StyledGalleryContainer = styled(Box)({
   },
   '& .gallery': {
     display: 'flex',
+    gap: 15,
     overflowX: 'auto',
     scrollSnapType: 'x mandatory',
     scrollBehavior: 'smooth',
+    borderRadius: 15,
     WebkitOverflowScrolling: 'touch',
     width: '100%',
+    scrollbarWidth: 'none',
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
   },
   '& .gallery-item': {
     flex: '0 0 100%',
@@ -34,14 +40,14 @@ export const StyledGalleryContainer = styled(Box)({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: '10px',
+    padding: 0,
   },
   '& img': {
     width: '100%',
-    height: 'auto',
-    maxHeight: 300,
+    height: 300,
     borderRadius: '15px',
-    border: '1px solid #3F523B',
-    objectFit: 'cover',
+    padding: 15,
+    border: '2px solid #3F523B',
+    objectFit: 'contain',
   },
 });
