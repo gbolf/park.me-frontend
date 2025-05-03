@@ -1,8 +1,10 @@
+import React from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import { autocompleteClasses } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { MaterialDesignContent } from 'notistack';
 import { BASE_GLASS_STYLE } from '@components/style';
+import { RiArrowDownLine } from '@remixicon/react';
 
 const getSnackbarStyle = (color: string) => ({
   ...BASE_GLASS_STYLE,
@@ -62,8 +64,8 @@ export const theme = createTheme({
       short: 400,
       standard: 500,
       complex: 600,
-      enteringScreen: 600,
-      leavingScreen: 300,
+      enteringScreen: 1000,
+      leavingScreen: 0,
     },
   },
   palette: {
@@ -120,7 +122,7 @@ export const theme = createTheme({
       lineHeight: 1.5,
     },
     subtitle1: {
-      fontWeight: 400,
+      fontWeight: 600,
       fontSize: '1.125rem', // 18px
       lineHeight: 1.6,
     },
@@ -186,6 +188,51 @@ export const theme = createTheme({
             border: `2px solid ${theme.palette.primary.light}`,
             borderRadius: 5,
           },
+        }),
+      },
+    },
+    MuiMenu: {
+      styleOverrides: {
+        paper: {
+          ...BASE_GLASS_STYLE,
+        },
+      },
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          paddingLeft: 15,
+          paddingRight: 15,
+        },
+      },
+    },
+    MuiAccordion: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          border: ` 2px solid ${alpha(theme.palette.primary.dark, 0.2)}`,
+          borderRadius: '10px !important',
+        }),
+      },
+    },
+    MuiAccordionSummary: {
+      defaultProps: {
+        expandIcon: <RiArrowDownLine />,
+      },
+      styleOverrides: {
+        root: {
+          padding: '0 15px',
+        },
+        content: ({ theme }) => ({
+          ...theme.typography.subtitle2,
+        }),
+      },
+    },
+    MuiAvatar: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          border: '2px solid #FFFFFF',
+          boxShadow: theme.shadows[1],
+          '& img': { objectFit: 'contain' },
         }),
       },
     },

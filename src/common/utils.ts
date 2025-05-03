@@ -1,5 +1,7 @@
 import { TextFieldProps } from '@mui/material';
 import { FormikProps } from 'formik';
+import { ViewState } from 'react-map-gl/mapbox';
+import Decimal from 'decimal.js';
 
 export const formatNumber = (number: number) =>
   Intl.NumberFormat('hr-HR', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(number);
@@ -11,7 +13,7 @@ export const getValueFromPath = (values: any, path: string) => {
   return path.match(/[^.[\]]+/g)?.reduce((obj, key) => obj?.[key], values);
 };
 
-export const createGetProps = <T>(formik: FormikProps<T>): ((name: string, label: string, placeholder?: string) => TextFieldProps) => {
+export const createGetProps = <T>(formik: FormikProps<T>): ((name: string, label?: string, placeholder?: string) => TextFieldProps) => {
   return (name, label, placeholder = '') => {
     const errorMsg = getValueFromPath(formik.errors, name);
     const isTouched = getValueFromPath(formik.touched, name);
@@ -22,6 +24,7 @@ export const createGetProps = <T>(formik: FormikProps<T>): ((name: string, label
       helperText: (isTouched && errorMsg) || '',
       onChange: formik.handleChange,
       fullWidth: true,
+      size: 'small',
       label,
       placeholder,
       disabled: formik.isSubmitting,
@@ -60,3 +63,30 @@ export const validateCurrentStep = async (formik: FormikProps<any>, getFieldsFor
 
   return true;
 };
+
+type Coordinate = { latitude: number; longitude: number };
+
+export function getMapViewState(coords: Coordinate[]): Partial<ViewState> {
+  if (coords.length === 0) return null;
+
+  let minLat = new Decimal(Infinity),
+    maxLat = new Decimal(-Infinity),
+    minLng = new Decimal(Infinity),
+    maxLng = new Decimal(-Infinity);
+
+  for (const { latitude, longitude } of coords) {
+    minLat = Decimal.min(minLat, new Decimal(latitude));
+    maxLat = Decimal.max(maxLat, new Decimal(latitude));
+    minLng = Decimal.min(minLng, new Decimal(longitude));
+    maxLng = Decimal.max(maxLng, new Decimal(longitude));
+  }
+
+  const centerLat = minLat.plus(maxLat).div(2).toNumber();
+  const centerLng = minLng.plus(maxLng).div(2).toNumber();
+
+  return {
+    latitude: centerLat,
+    longitude: centerLng,
+    zoom: 14,
+  };
+}
