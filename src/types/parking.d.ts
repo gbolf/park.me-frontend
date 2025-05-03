@@ -1,5 +1,5 @@
 type Parking = {
-  id: number;
+  id: string;
   title: string;
   images: string[];
   tags: ParkingCategories;
@@ -9,4 +9,14 @@ type Parking = {
   };
   price: number;
   description: string;
+};
+
+type ParkingFilters = {
+  startDate: Dayjs;
+  endDate: Dayjs;
+  address: MapboxAddress;
+  disatance: {
+    value: number;
+    unit: Mesumentunits[number];
+  };
 };
