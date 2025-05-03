@@ -38,7 +38,6 @@ export function getResource<T = any>(resourcePath: string) {
 }
 
 export function postResource<T = any>(resourcePath: string, body: any) {
-  return axiosInstance.post(API_ENDPOINT + resourcePath);
   return () =>
     request<T>(resourcePath, {
       method: 'POST',

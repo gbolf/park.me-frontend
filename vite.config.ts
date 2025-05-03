@@ -6,14 +6,6 @@ import fs from 'fs';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  server: {
-    host: 'local.park.me.gbolf.com',
-    port: 3000,
-    https: {
-      key: fs.readFileSync('certs/key.pem'),
-      cert: fs.readFileSync('certs/cert.pem'),
-    },
-  },
   resolve: {
     alias: {
       '@images': path.resolve(__dirname, '/src/assets/images'),
