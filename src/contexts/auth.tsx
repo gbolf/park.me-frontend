@@ -21,9 +21,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const login: AuthLoginFunction = async (values) => {
-    setLoading(true);
     const { success } = await postResource<{ success: boolean }>(api.login, values)();
     if (success) {
+      setLoading(true);
       localStorage.setItem('isLoggedIn', 'true');
       await setupUser();
     } else {
