@@ -5,4 +5,7 @@ export const api = {
   logout: 'auth/logout',
 
   fileUpload: 'upload',
+  parking: 'parkings',
+  myparkings: 'parkings/myParkings',
+  bookedParkings: 'parkings/bookedParkings',
 } as const;
