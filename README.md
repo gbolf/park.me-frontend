@@ -4,6 +4,10 @@
   <img src="./src/assets/images/cover.png" alt="Park.me Logo" width="400" />
 </p>
 
+## Live Demo
+
+[Click here to try Park.me live!](https://park.me.gbolf.com)
+
 ## Overview
 
 Park.me is a user-friendly web application designed to help drivers find, reserve, and pay for parking spots in real-time. Whether you're commuting to work or heading to an event, Park.me simplifies your parking experience, reduces time spent searching for a spot, and provides seamless payment options.
