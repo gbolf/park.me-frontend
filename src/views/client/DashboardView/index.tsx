@@ -15,10 +15,9 @@ export function Dashboard() {
 
   return (
     <StyledSideContainer key="main-container">
-      <Typography variant="h1" mt={1} mb={6}>
+      <Typography variant="h1" mt={1} mb={3}>
         Pozdrav, {user.firstName}!
       </Typography>
-
       <Grid container spacing={2} size={12}>
         <Grid size={12}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

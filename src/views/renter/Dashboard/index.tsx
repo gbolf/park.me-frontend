@@ -18,7 +18,7 @@ export function DashboardRenter() {
 
   return (
     <StyledSideContainer>
-      <Typography variant="h1" mt={1} mb={6}>
+      <Typography variant="h1" mt={1} mb={3}>
         Pozdrav, {user.firstName}!
       </Typography>
       <Grid container spacing={4}>
