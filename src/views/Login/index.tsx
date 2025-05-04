@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { useFormik } from 'formik';
-import { postResource } from '../../common/crud';
 import { StyledFormContainer } from './style';
 import { StyledSideContainer } from '../../layouts/style';
 import { useAuth } from '@contexts/auth';
@@ -15,7 +14,7 @@ export function Login() {
     onSubmit: (values, { setSubmitting }) => {
       setSubmitting(true);
       if (login(values)) {
-       // navigate(buildLink('dashboard'));
+        navigate(buildLink('dashboard'));
       }
       setSubmitting(false);
     },

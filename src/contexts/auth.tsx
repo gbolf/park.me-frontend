@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode, useLayoutEffect } from 'react';
 import { postResource } from '../common/crud';
+import { api } from '@common/api';
+import axios from 'axios';
 
 const AuthContext = createContext<{ loading: boolean; user: User; login: AuthLoginFunction; logout: AuthLogoutFunction; register: AuthRegisterFunction }>(null);
 
@@ -10,7 +12,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User>({ name: '', email: '', role: null, profileImage: '' });
 
   const login: AuthLoginFunction = async (values) => {
-    const success = (await postResource<{ message: string }>('login', values)()).message === 'Logged in successfully';
+    const success = await axios.post(api.login, values);
+    return false;
     if (success) {
       setUser({ name: 'Noah', email: 'nono@nono.nono', role: 'RENTER', profileImage: 'https://duckduckgo.com/i/a26d27a6515eead7.png' });
       localStorage.setItem('isLoggedIn', 'true');

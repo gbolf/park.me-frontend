@@ -1,43 +1,47 @@
 import { API_ENDPOINT } from './constants';
-import axios from 'axios';
 
-async function request<T = any>(resourcePath: string, options: RequestInit = {}): Promise<T> {
-  const response = await fetch(resourcePath.includes('http') ? resourcePath : API_ENDPOINT + resourcePath, {
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    ...(!resourcePath.includes('http') && { credentials: 'include' }),
+async function request<T>(resourcePath: string, options: RequestInit = {}): Promise<T> {
+  const url = resourcePath.startsWith('http') ? resourcePath : `${API_ENDPOINT.replace(/\/$/, '')}/${resourcePath.replace(/^\//, '')}`;
+
+  const defaultHeaders: HeadersInit = {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  };
+
+  const isExternal = resourcePath.startsWith('http');
+
+  const response = await fetch(url, {
     ...options,
+    headers: {
+      ...defaultHeaders,
+      ...(options.headers || {}),
+    },
+    ...(isExternal ? {} : { credentials: 'include' }),
   });
 
   if (!response.ok) {
-    const error = await response.text().catch(() => 'Unknown error');
-    throw new Error(`Request failed: ${response.status} ${response.statusText} - ${error}`);
+    let errorMessage: string;
+    try {
+      errorMessage = await response.text();
+    } catch {
+      errorMessage = 'Unknown error';
+    }
+    throw new Error(`Request failed: ${response.status} ${response.statusText} - ${errorMessage}`);
   }
 
-  return response.json();
+  try {
+    return await response.json();
+  } catch {
+    throw new Error('Failed to parse JSON response');
+  }
 }
 
-const axiosInstance = axios.create({
-  withCredentials: true,
-  headers: {
-    Accept: 'application/json',
-  },
-});
-
-export async function cookieSetup(): Promise<void> {
-  axiosInstance.get(API_ENDPOINT.replace('api/', 'sanctum/csrf-cookie'));
-
-  //  await fetch(API_ENDPOINT.replace('api/', 'sanctum/csrf-cookie'), { credentials: 'include' });
-  //  await fetch(API_ENDPOINT + 'file', { method: 'POST', credentials: 'include' });
-}
-
-export function getResource<T = any>(resourcePath: string) {
+// Resource helpers
+export function getResource<T>(resourcePath: string): () => Promise<T> {
   return () => request<T>(resourcePath, { method: 'GET' });
 }
 
-export function postResource<T = any>(resourcePath: string, body: any) {
+export function postResource<T, B = unknown>(resourcePath: string, body: B): () => Promise<T> {
   return () =>
     request<T>(resourcePath, {
       method: 'POST',
@@ -45,11 +49,19 @@ export function postResource<T = any>(resourcePath: string, body: any) {
     });
 }
 
-export function postResourceFormData<T = any>(resourcePath: string, body: any) {
-  return () => request<T>(resourcePath, { method: 'POST', body, headers: { Accept: 'application/json' } });
+export function postResourceFormData<T>(resourcePath: string, body: FormData): () => Promise<T> {
+  return () =>
+    request<T>(resourcePath, {
+      method: 'POST',
+      body,
+      // Let the browser set the correct multipart/form-data boundary
+      headers: {
+        Accept: 'application/json',
+      },
+    });
 }
 
-export function putResource<T = any>(resourcePath: string, body: any) {
+export function putResource<T, B = unknown>(resourcePath: string, body: B): () => Promise<T> {
   return () =>
     request<T>(resourcePath, {
       method: 'PUT',
@@ -57,7 +69,7 @@ export function putResource<T = any>(resourcePath: string, body: any) {
     });
 }
 
-export function patchResource<T = any>(resourcePath: string, body: any) {
+export function patchResource<T, B = unknown>(resourcePath: string, body: B): () => Promise<T> {
   return () =>
     request<T>(resourcePath, {
       method: 'PATCH',
@@ -65,6 +77,6 @@ export function patchResource<T = any>(resourcePath: string, body: any) {
     });
 }
 
-export function deleteResource<T = any>(resourcePath: string) {
+export function deleteResource<T>(resourcePath: string): () => Promise<T> {
   return () => request<T>(resourcePath, { method: 'DELETE' });
 }

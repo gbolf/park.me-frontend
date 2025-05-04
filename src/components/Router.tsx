@@ -13,7 +13,6 @@ import { Registration } from '../views/Registration';
 import { NavigationLayout } from '../layouts/NavigationLayout';
 import { Parkinglist } from '../views/client/ParkingListView';
 import { Profile } from '../views/Profile';
-import { cookieSetup } from '@common/crud';
 
 export const ROUTES = {
   landing: {
@@ -140,10 +139,6 @@ export function Router() {
     }));
 
   let router = createBrowserRouter(routes);
-
-  useEffect(() => {
-    cookieSetup();
-  }, []);
 
   if (loading) {
     return <CircularProgress />;

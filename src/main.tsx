@@ -10,8 +10,14 @@ import 'yet-another-react-lightbox/styles.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { SnackbarProvider } from 'notistack';
 import { MapProvider } from '@contexts/map';
+import axios from 'axios';
+import { API_ENDPOINT } from '@common/constants';
 
 const queryClient = new QueryClient({});
+
+axios.defaults.baseURL = API_ENDPOINT;
+axios.defaults.withCredentials = true;
+axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 createRoot(document.getElementById('root')).render(
   <SnackbarProvider maxSnack={5} autoHideDuration={5000} variant="success" anchorOrigin={{ vertical: 'top', horizontal: 'right' }} Components={snacbars}>
