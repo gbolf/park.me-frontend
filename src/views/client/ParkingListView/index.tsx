@@ -10,6 +10,7 @@ import { useMapContext } from '@contexts/map';
 import { getMapViewState } from '@common/utils';
 import { useNavigate } from 'react-router';
 import { buildLink } from '@components/Router';
+import { useMapboxSearchByCoordinates } from '@hooks/address/mutations';
 
 const INITIAL_FILTERS: ParkingFilters = {
   startDate: dayjs(),
@@ -27,6 +28,7 @@ export function Parkinglist() {
   const { setMarkerPositions, setMapPostion } = useMapContext();
   const navigate = useNavigate();
   const parkingsQuery = useParkings(filters);
+  const mapboxSearchByCoordinatesMutation = useMapboxSearchByCoordinates();
 
   useEffect(() => {
     const coordinates: MarkerProps[] = parkingsQuery.data.map(({ coordinates, title, images, id }) => ({
@@ -38,6 +40,18 @@ export function Parkinglist() {
     setMarkerPositions(coordinates);
     setMapPostion(getMapViewState(coordinates));
   }, [parkingsQuery.data]);
+
+  useEffect(() => {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(async (pos) => {
+        const { latitude, longitude } = pos.coords;
+        const [address] = await mapboxSearchByCoordinatesMutation.mutateAsync({ latitude, longitude });
+        setFilters((old) => ({ ...old, address }));
+      });
+    } else {
+      alert('Geolocation not supported');
+    }
+  }, []);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>

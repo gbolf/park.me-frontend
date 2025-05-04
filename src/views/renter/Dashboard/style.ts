@@ -6,6 +6,7 @@ import { StyledBaseGlassBox } from '@components/style';
 export const StyledSideContainer = styled(StyledBaseGlassBox)({
   width: '100%',
   height: 'unset',
+  minHeight: '100%',
 });
 
 export const StyledCard = styled(Card)({

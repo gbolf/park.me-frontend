@@ -28,10 +28,16 @@ export function Login() {
     <StyledSideContainer>
       <StyledFormContainer>
         <Typography variant="h1">Prijava</Typography>
-        <Box>
+        <Box
+          component="form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            formik.submitForm();
+          }}
+        >
           <TextField {...getProps('email', 'Email')} placeholder="ivan.horvat@google.com" />
           <TextField {...getProps('password', 'Lozinka')} placeholder="********" type="password" />
-          <Button fullWidth variant="contained" onClick={formik.submitForm}>
+          <Button fullWidth type="submit" variant="contained">
             Prijavi se
           </Button>
           <Button component={Link} variant="text" disabled={formik.isSubmitting} to={buildLink('register')}>

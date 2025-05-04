@@ -1,38 +1,54 @@
-import React, { useState } from 'react';
-import { Avatar, Box, Button, Menu, Typography, MenuItem, Grid } from '@mui/material';
-import { StyledSideContainer } from './style';
+import React from 'react';
+import { Box, Button, Typography, Grid, CardActionArea } from '@mui/material';
+import { StyledCardContent, StyledCardMedia, StyledSideContainer, StyledCard } from './style';
 import { useAuth } from '../../../contexts/auth';
-import { RiLogoutBoxRLine } from '@remixicon/react';
+import { RiAddLine } from '@remixicon/react';
+import { buildLink } from '@components/Router';
+import { useMyParkings } from '@hooks/parking/queries';
+import { Link } from 'react-router';
 
 export function Dashboard() {
-  const [dropDownNode, setDropDownNode] = useState(null);
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
+
+  const myParkingsQuery = useMyParkings();
+  const myParkings = myParkingsQuery.data;
 
   return (
     <StyledSideContainer key="main-container">
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '30px' }}>
-        <Typography>Park.me</Typography>
-        <Button
-          onClick={(e) => setDropDownNode(e.currentTarget)}
-          variant="outlined"
-          size="small"
-          sx={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '5px 10px' }}
-        >
-          <Avatar alt={user.firstName} sx={{ width: '30px', height: '30px' }} />
-          <Typography>{user.firstName}</Typography>
-        </Button>
-      </Box>
-      <Menu open={!!dropDownNode} anchorEl={dropDownNode} onClose={() => setDropDownNode(null)}>
-        <MenuItem sx={{ paddingTop: 0, width: dropDownNode?.offsetWidth }}>
-          <Button endIcon={<RiLogoutBoxRLine />} onClick={logout}>
-            Odjava
-          </Button>
-        </MenuItem>
-      </Menu>
-      <Typography variant="h1">Dobro došao, {user.firstName}!</Typography>
-      <Typography variant="h2" sx={{ mt: '40px' }}>
-        Vaše rezervacije
+      <Typography variant="h1" mt={1} mb={6}>
+        Pozdrav, {user.firstName}!
       </Typography>
+
+      <Grid container spacing={2} size={12}>
+        <Grid size={12}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Typography variant="h3">Vaše rezervacije</Typography>
+            <Link to={buildLink("parkinglist")}>
+              <Button variant="contained" size="small" endIcon={<RiAddLine />}>
+                Rezerviraj
+              </Button>
+            </Link>
+          </Box>
+        </Grid>
+        <Grid container spacing={3} size={12}>
+          {myParkings.map(({ images, title, id }) => (
+            <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={id}>
+              <StyledCard>
+                <Link to={buildLink('parkingOverview', { parkingId: id })}>
+                  <CardActionArea sx={{ height: '100%' }}>
+                    <StyledCardMedia image={images?.[0] || '/placeholder.jpg'} />
+                    <StyledCardContent>
+                      <Typography variant="caption" fontWeight="bold" noWrap title={title}>
+                        {title}
+                      </Typography>
+                    </StyledCardContent>
+                  </CardActionArea>
+                </Link>
+              </StyledCard>
+            </Grid>
+          ))}
+        </Grid>
+      </Grid>
     </StyledSideContainer>
   );
 }

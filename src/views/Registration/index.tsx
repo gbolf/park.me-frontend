@@ -47,35 +47,42 @@ export function Registration() {
       <Typography variant="h1" textAlign="center" mt={2}>
         Registracija
       </Typography>
-      {TABS.map((Component, idx) => (
-        <Fade in={formik.values.step === idx} unmountOnExit key={idx}>
-          <span>
-            <Component getProps={getProps} formik={formik} />
-          </span>
-        </Fade>
-      ))}
-      <Box sx={{ mt: 'auto', zIndex: 4, position: 'relative', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-        <Slide direction="right" in={formik.values.step === 0} timeout={{ enter: 500, exit: 400 }}>
-          <Button component={Link} variant="text" disabled={formik.isSubmitting} to={buildLink('login')}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleNext();
+        }}
+      >
+        {TABS.map((Component, idx) => (
+          <Fade in={formik.values.step === idx} unmountOnExit key={idx}>
             <span>
-              Imate račun? <u>Prijavi se</u>
+              <Component getProps={getProps} formik={formik} />
             </span>
+          </Fade>
+        ))}
+        <Box sx={{ mt: 'auto', zIndex: 4, position: 'relative', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Slide direction="right" in={formik.values.step === 0} timeout={{ enter: 500, exit: 400 }}>
+            <Button component={Link} variant="text" disabled={formik.isSubmitting} to={buildLink('login')}>
+              <span>
+                Imate račun? <u>Prijavi se</u>
+              </span>
+            </Button>
+          </Slide>
+          <Slide direction="right" in={formik.values.step > 0} timeout={{ enter: 500, exit: 400 }}>
+            <Button
+              variant="text"
+              sx={{ width: 0, overflow: 'hidden' }}
+              disabled={formik.values.step === 0 || formik.isSubmitting}
+              onClick={() => formik.setFieldValue('step', formik.values.step - 1)}
+            >
+              Natrag
+            </Button>
+          </Slide>
+          <Button variant="contained" type="submit" disabled={formik.isSubmitting}>
+            {formik.values.step < TABS.length ? 'Dalje' : 'Kreiraj račun'}
           </Button>
-        </Slide>
-        <Slide direction="right" in={formik.values.step > 0} timeout={{ enter: 500, exit: 400 }}>
-          <Button
-            variant="text"
-            sx={{ width: 0, overflow: 'hidden' }}
-            disabled={formik.values.step === 0 || formik.isSubmitting}
-            onClick={() => formik.setFieldValue('step', formik.values.step - 1)}
-          >
-            Natrag
-          </Button>
-        </Slide>
-        <Button variant="contained" onClick={handleNext} disabled={formik.isSubmitting}>
-          {formik.values.step < TABS.length ? 'Dalje' : 'Kreiraj račun'}
-        </Button>
-      </Box>
+        </Box>
+      </form>
     </StyledSideContainer>
   );
 }

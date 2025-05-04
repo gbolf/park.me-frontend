@@ -4,7 +4,7 @@ import { StyledCard, StyledCardContent, StyledCardMedia, StyledSideContainer } f
 import { useAuth } from '@contexts/auth';
 import { RiAddLine } from '@remixicon/react';
 import { buildLink } from '@router';
-import { useMyParkings } from '../../../hooks/parking/queries';
+import { useBookedParkings, useMyParkings } from '../../../hooks/parking/queries';
 import { Link } from 'react-router';
 
 export function DashboardRenter() {
@@ -12,6 +12,9 @@ export function DashboardRenter() {
 
   const myParkingsQuery = useMyParkings();
   const myParkings = myParkingsQuery.data;
+
+  const bookedParkingsQuery = useBookedParkings();
+  const bookedParkings = bookedParkingsQuery.data;
 
   return (
     <StyledSideContainer>
@@ -31,7 +34,7 @@ export function DashboardRenter() {
             </Box>
           </Grid>
           <Grid container spacing={3} size={12}>
-            {[...myParkings, ...myParkings.map((e) => ({ ...e, id: e.id + 'my' }))].map(({ images, title, id }) => (
+            {myParkings.map(({ images, title, id }) => (
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={id}>
                 <StyledCard>
                   <Link to={buildLink('parkingOverview', { parkingId: id })}>
@@ -53,7 +56,7 @@ export function DashboardRenter() {
           <Grid size={12}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <Typography variant="h3">Vaše rezervacije</Typography>
-              <Link to={buildLink('rentPlace')}>
+              <Link to={buildLink('parkinglist')}>
                 <Button variant="contained" size="small" endIcon={<RiAddLine />}>
                   Rezerviraj
                 </Button>
@@ -61,7 +64,7 @@ export function DashboardRenter() {
             </Box>
           </Grid>
           <Grid container spacing={3} size={12}>
-            {[...myParkings, ...myParkings.map((e) => ({ ...e, id: e.id + 'my' }))].map(({ images, title, id }) => (
+            {bookedParkings.map(({ images, title, id }) => (
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={id}>
                 <StyledCard>
                   <Link to={buildLink('parkingOverview', { parkingId: id })}>
