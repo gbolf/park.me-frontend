@@ -23,7 +23,7 @@ export function HeroSection() {
           Privatno parkiranje
           <span>bez stresa!</span>
         </StyledMainTitle>
-        <StyledSubTitle>Jednostavni, brzo, sigurno</StyledSubTitle>
+        <StyledSubTitle>Jednostavno, brzo, sigurno</StyledSubTitle>
         <StyledButton>Iznajmi parkirno mjesto</StyledButton>
         <StyledButton>Pronađi parkirno mjesto</StyledButton>
         <StyledHelperText>Dodatan popust za električna vozila</StyledHelperText>

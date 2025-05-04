@@ -5,20 +5,19 @@ import { StyledContainer, StyledGreenContainer, StyledSubContainer, StyledSubTit
 export function WhyUsSection() {
   return (
     <Box id="zasto-mi">
-      <StyledTitle variant="h1">Zašto baš mi?</StyledTitle>
+      <StyledTitle variant="h1">Zašto odabrati Park.me?</StyledTitle>
       <StyledContainer>
         <StyledSubContainer>
-          <StyledSubTitle variant="h3">Štedimo vrijeme i novac</StyledSubTitle>
+          <StyledSubTitle variant="h3">Pametnije parkiranje, više uštede</StyledSubTitle>
           <StyledSubTitle2>
-            Zaboravite na skupe javne garaže s Park.me plaćate manje, a dobivate više. Naša transparentna politika cijena znači da nema skrivenih troškova.
+            Recite zbogom frustrirajućoj potrazi za parkingom i visokim cijenama javnih garaža. S Park.me, pronađite dostupna parkirna mjesta brzo i jednostavno, po povoljnijim cijenama. Naša transparentna politika cijena osigurava da uvijek znate koliko plaćate - bez skrivenih naknada.
           </StyledSubTitle2>
         </StyledSubContainer>
         <StyledGreenContainer>
-          <Typography variant="h3">Eko-popusti</Typography>
-          <Typography variant="h4">Popusti za električna vozila</Typography>
+          <Typography variant="h3">Zeleni popusti za zelenu budućnost</Typography>
+          <Typography variant="h4">Posebne pogodnosti za električna vozila</Typography>
           <Typography>
-            Vozite električni auto? <b>Park.me nagrađuje održiva vozila.</b> Ostvarite popuste na odabrane lokacije Osim što štedite novac, doprinosite
-            smanjenju emisija CO<sub>2</sub> i podržavate zajednice koje ulažu u zelenu infrastrukturu. Parkirajte pametno. Vozite zeleno. <b>Uštedite više.</b>
+            Vozite električno? Park.me vas nagrađuje! Iskoristite <b>ekskluzivne popuste</b> na odabranim parkirnim lokacijama. Ne samo da štedite novac, već i aktivno doprinosite čišćem okolišu smanjenjem emisija CO<sub>2</sub>. Podržite zajednice koje ulažu u zelenu infrastrukturu. Parkirajte pametno, vozite zeleno i <b>uštedite više s Park.me!</b>
           </Typography>
         </StyledGreenContainer>
       </StyledContainer>

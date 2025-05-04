@@ -9,7 +9,7 @@ import { StyledContainer, StyledStepsContainer } from './style';
 const SECTIONS = [
   {
     img: searchBroImg,
-    title: 'Pronalazak odgovarajuček mjesta',
+    title: 'Pronalazak odgovarajućeg mjesta',
     content: 'Uz našu napredno filtiranje moguće je pronaći parkirna mjesta pomoću lokacije, željenje dostupnosti cijene.',
   },
   {
@@ -20,7 +20,7 @@ const SECTIONS = [
   {
     img: parkingBroImg,
     title: 'Parkiraj',
-    content: 'Nema potrebe za vožnjom po gradu u potrazi za parkigom. Prepustite name da pronađemo parking za vas.',
+    content: 'Nema potrebe za vožnjom po gradu u potrazi za parkingom. Prepustite nama da pronađemo parking za vas.',
   },
 ];
 

@@ -9,17 +9,17 @@ import womanImg from '@images/woman.jpg';
 const REVIEWS = [
   {
     img: womanImg,
-    comment: 'Svaka preporuka. Ja sam odušljvenja. Cijena prikladna. Usluga odlična!!',
+    comment: 'Svaka preporuka. Ja sam odušeljvena. Cijena prikladna. Usluga odlična!',
     name: 'Martina P.',
   },
   {
     img: manImg,
-    comment: 'Svaka preporuka. Ja sam odušljvenja. Cijena prikladna. Usluga odlična!!',
+    comment: 'Aplikacija je jednostavna za korištenje, a parkiranje nikad nije bilo lakše pronaći. Top!',
     name: 'Davor K.',
   },
   {
     img: womanImg,
-    comment: 'Svaka preporuka. Ja sam odušljvenja. Cijena prikladna. Usluga odlična!!',
+    comment: 'Odlična usluga! Uvijek nađem slobodno mjesto blizu odredišta. Preporučujem svima.',
     name: 'Marija C.',
   },
 ];
