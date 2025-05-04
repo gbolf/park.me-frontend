@@ -63,6 +63,10 @@ export const StyledReview = styled(Box)(({ theme }) => ({
     left: -100,
     width: 200,
     zIndex: -1,
+    [theme.breakpoints.down('md')]: {
+      width: 100,
+      left: -50,
+    },
   },
   '& .quote-bottom': {
     position: 'absolute',
@@ -71,5 +75,9 @@ export const StyledReview = styled(Box)(({ theme }) => ({
     width: 200,
     transform: 'rotate(180deg)',
     zIndex: -1,
+    [theme.breakpoints.down('md')]: {
+      width: 100,
+      right: -50,
+    },
   },
 }));

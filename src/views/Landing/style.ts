@@ -7,6 +7,7 @@ export const StyledMainContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: '200px',
+  paddingTop: 80,
   [theme.breakpoints.down('md')]: {
     gap: '100px',
   },
@@ -15,7 +16,7 @@ export const StyledMainContainer = styled(Box)(({ theme }) => ({
 export const StyledList = styled(List)(({ theme }) => ({
   position: 'fixed',
   top: 15,
-  left: 14,
+  left: 15,
   width: 'calc(100% - 30px)',
   display: 'flex',
   justifyContent: 'space-between',
@@ -23,11 +24,6 @@ export const StyledList = styled(List)(({ theme }) => ({
   fontWeight: '800',
   padding: 0,
   zIndex: 2,
-  [theme.breakpoints.down('md')]: {
-    gap: '10px',
-    top: 10,
-    left: 10,
-  },
   [`& .${listItemClasses.root}`]: {
     width: 'max-content',
     borderRadius: '15px',
