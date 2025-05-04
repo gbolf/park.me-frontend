@@ -1,54 +1,85 @@
-# React + TypeScript + Vite
+# Park.me Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  <img src="./src/assets/images/cover.png" alt="Park.me Logo" width="400" />
+</p>
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Park.me is a user-friendly web application designed to help drivers find, reserve, and pay for parking spots in real-time. Whether you're commuting to work or heading to an event, Park.me simplifies your parking experience, reduces time spent searching for a spot, and provides seamless payment options.
 
-## Expanding the ESLint configuration
+## Technology Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Framework:** React
+- **Language:** TypeScript
+- **Bundler:** Vite
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-org/park.me-frontend.git
+   cd park.me-frontend
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+### Running Locally
+
+Start the development server:
+
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open your browser and navigate to `http://localhost:3000` (or the port Vite indicates).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Building for Production
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+To create an optimized production build:
+
+```bash
+npm run build
 ```
+
+The build output will be in the `dist` folder.
+
+## Folder Structure
+
+```
+park.me-frontend/
+├── public/           # Static public files
+├── src/
+│   ├── assets/       # Images, logos, and other static assets
+│   ├── common/       # Shared utilities, constants, patterns
+│   ├── components/   # Reusable UI components
+│   ├── contexts/     # React context providers
+│   ├── hooks/        # Custom React hooks
+│   ├── layouts/      # Layout components
+│   ├── views/        # Page-level components organized by feature/route
+│   ├── main.tsx      # Application entry point
+│   ├── theme.tsx     # MUI theme configuration and custom styles
+│   └── types/        # TypeScript type definitions
+├── .gitignore        # Git ignore file
+├── index.html        # Main HTML file
+├── package.json      # Project dependencies and scripts
+├── README.md         # This file
+├── tsconfig.json     # TypeScript configuration
+└── vite.config.ts    # Vite build tool configuration
+```
+
+## Contact
+
+For questions or feedback, please open an issue on GitHub or [contact the maintainer](mailto:dev.astonish166@passfwd.com)
