@@ -191,6 +191,11 @@ export const theme = createTheme({
         }),
       },
     },
+    MuiTextField: {
+      defaultProps: {
+        variant: 'filled',
+      },
+    },
     MuiMenu: {
       styleOverrides: {
         paper: {

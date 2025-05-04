@@ -3,7 +3,7 @@ import { Box, Button, Fade, Slide, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 
 import { StyledSideContainer } from '../../layouts/style';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { buildLink } from '@router';
 import { createGetProps, validateCurrentStep } from '@common/utils';
 import { TABS } from './components/tabs';
@@ -55,6 +55,13 @@ export function Registration() {
         </Fade>
       ))}
       <Box sx={{ mt: 'auto', zIndex: 4, position: 'relative', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+        <Slide direction="right" in={formik.values.step === 0} timeout={{ enter: 500, exit: 400 }}>
+          <Button component={Link} variant="text" disabled={formik.isSubmitting} to={buildLink('login')}>
+            <span>
+              Imate račun? <u>Prijavi se</u>
+            </span>
+          </Button>
+        </Slide>
         <Slide direction="right" in={formik.values.step > 0} timeout={{ enter: 500, exit: 400 }}>
           <Button
             variant="text"
