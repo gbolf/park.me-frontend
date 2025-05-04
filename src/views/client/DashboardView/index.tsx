@@ -18,8 +18,8 @@ export function Dashboard() {
           size="small"
           sx={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '5px 10px' }}
         >
-          <Avatar alt={user.name} sx={{ width: '30px', height: '30px' }} />
-          <Typography>{user.name}</Typography>
+          <Avatar alt={user.firstName} sx={{ width: '30px', height: '30px' }} />
+          <Typography>{user.firstName}</Typography>
         </Button>
       </Box>
       <Menu open={!!dropDownNode} anchorEl={dropDownNode} onClose={() => setDropDownNode(null)}>
@@ -29,7 +29,7 @@ export function Dashboard() {
           </Button>
         </MenuItem>
       </Menu>
-      <Typography variant="h1">Dobro došao, {user.name}!</Typography>
+      <Typography variant="h1">Dobro došao, {user.firstName}!</Typography>
       <Typography variant="h2" sx={{ mt: '40px' }}>
         Vaše rezervacije
       </Typography>

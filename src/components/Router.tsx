@@ -8,7 +8,7 @@ import { Dashboard } from '../views/client/DashboardView';
 import { DashboardRenter } from '../views/renter/Dashboard';
 import { useAuth } from '@contexts/auth';
 import { RenterRentPlace } from '../views/renter/RentPlace';
-import { CircularProgress } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 import { Registration } from '../views/Registration';
 import { NavigationLayout } from '../layouts/NavigationLayout';
 import { Parkinglist } from '../views/client/ParkingListView';
@@ -20,21 +20,21 @@ export const ROUTES = {
     title: 'Početna stranica',
     Component: Landing,
     layout: null as null,
-    role: [] as UserRoles[],
+    role: ['CUSTOMER', 'RENTER', null] as UserRoles[],
   },
   login: {
     path: '/login',
     title: 'Prijava',
     Component: Login,
     layout: MainLayout,
-    role: [] as UserRoles[],
+    role: [null] as UserRoles[],
   },
   register: {
     path: '/register',
     title: 'Prijava',
     Component: Registration,
     layout: MainLayout,
-    role: [] as UserRoles[],
+    role: [null] as UserRoles[],
   },
   parkingOverview: {
     path: '/parking/:parkingId',
@@ -88,9 +88,9 @@ export const ROUTES = {
   redirectUnknown: {
     path: '/*',
     title: '',
-    Component: () => <Navigate to="/login" />,
+    Component: () => <Navigate to="/" />,
     layout: null as null,
-    role: [] as UserRoles[],
+    role: [null] as UserRoles[],
   },
 } as const;
 
@@ -115,14 +115,13 @@ function Title({ title, children }: { title: string; children: ReactNode }) {
   return children;
 }
 
-export function Router() {
+function Router() {
   const {
-    loading,
     user: { role },
   } = useAuth();
 
   const routes = Object.values(ROUTES)
-    .filter((value) => !value.role.length || value.role.includes(role))
+    .filter((value) => value.role.includes(role))
     .map(({ path, layout: Layout = null, Component, title }) => ({
       path,
       Component: () => (
@@ -139,10 +138,16 @@ export function Router() {
     }));
 
   let router = createBrowserRouter(routes);
-
-  if (loading) {
-    return <CircularProgress />;
-  }
-
   return <RouterProvider router={router} />;
+}
+
+export function App() {
+  const { loading } = useAuth();
+  if (loading)
+    return (
+      <Box sx={{ display: 'grid', placeItems: 'center', height: '100%' }}>
+        <CircularProgress size={100} />
+      </Box>
+    );
+  return <Router />;
 }

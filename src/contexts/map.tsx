@@ -35,6 +35,7 @@ export const MapProvider = ({ children }: { children: ReactNode }) => {
   return (
     <MapContext value={{ setMapPostion, setMarkerPositions, setIsActive }}>
       <Map
+        key={`map-${isActive}`}
         ref={mapRef}
         initialViewState={mapPostion ?? ZAGREB_LNG_LAT}
         mapboxAccessToken={MAPBOX_API_KEY}

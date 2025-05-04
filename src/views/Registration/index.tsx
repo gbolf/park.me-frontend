@@ -10,18 +10,15 @@ import { TABS } from './components/tabs';
 import { getFieldsForStep, INITIAL_VALUES, validationSchema } from './validation';
 import { enqueueSnackbar } from 'notistack';
 import { useAuth } from '@contexts/auth';
-import { useFileUpload } from '@hooks/file/mutations';
 
 export function Registration() {
   const navigate = useNavigate();
-  const useFileUploadMutation = useFileUpload();
   const { register } = useAuth();
 
   const formik = useFormik({
     onSubmit: async (values, { setSubmitting }) => {
       setSubmitting(true);
-      const { url } = await useFileUploadMutation.mutateAsync(values.profileImage.file);
-      const success = (await register({ ...values, profileImage: url })) || false;
+      const success = (await register({ ...values, profileImage: values.profileImage.file })) || false;
       if (success) {
         enqueueSnackbar('Registracija je uspješna');
         navigate(buildLink('login'));

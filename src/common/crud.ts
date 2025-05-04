@@ -13,21 +13,10 @@ async function request<T>(resourcePath: string, options: RequestInit = {}): Prom
   const response = await fetch(url, {
     ...options,
     headers: {
-      ...defaultHeaders,
-      ...(options.headers || {}),
+      ...(options.headers || defaultHeaders),
     },
     ...(isExternal ? {} : { credentials: 'include' }),
   });
-
-  if (!response.ok) {
-    let errorMessage: string;
-    try {
-      errorMessage = await response.text();
-    } catch {
-      errorMessage = 'Unknown error';
-    }
-    throw new Error(`Request failed: ${response.status} ${response.statusText} - ${errorMessage}`);
-  }
 
   try {
     return await response.json();
@@ -41,7 +30,7 @@ export function getResource<T>(resourcePath: string): () => Promise<T> {
   return () => request<T>(resourcePath, { method: 'GET' });
 }
 
-export function postResource<T, B = unknown>(resourcePath: string, body: B): () => Promise<T> {
+export function postResource<T, B = unknown>(resourcePath: string, body?: B): () => Promise<T> {
   return () =>
     request<T>(resourcePath, {
       method: 'POST',
@@ -54,7 +43,6 @@ export function postResourceFormData<T>(resourcePath: string, body: FormData): (
     request<T>(resourcePath, {
       method: 'POST',
       body,
-      // Let the browser set the correct multipart/form-data boundary
       headers: {
         Accept: 'application/json',
       },

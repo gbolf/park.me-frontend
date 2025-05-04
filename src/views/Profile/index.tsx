@@ -26,13 +26,13 @@ export function Profile() {
             <Typography variant="subtitle2">Ime</Typography>
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
-            <TextField {...getProps('name')} />
+            <TextField {...getProps('firstName')} />
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
             <Typography variant="subtitle2">Prezime</Typography>
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
-            <TextField {...getProps('name')} />
+            <TextField {...getProps('lastName')} />
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
             <Typography variant="subtitle2">Email adresa</Typography>

@@ -40,7 +40,7 @@ export function NavigationLayout({ children }: { children: ReactNode }) {
           </ListItem>
         </List>
         <StyledAvatarContainer onClick={(e) => setDropDownNode(e.currentTarget)} size="small">
-          <Typography>{user.name}</Typography>
+          <Typography>{`${user.firstName} ${user.lastName}`}</Typography>
           <Avatar src={user.profileImage} />
         </StyledAvatarContainer>
       </StyledAppbarContainer>

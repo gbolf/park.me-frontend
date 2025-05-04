@@ -6,7 +6,7 @@ type AuthRegisterFunction = (props: {
   firstName: string;
   lastName: string;
   username: string;
-  profileImage: string;
+  profileImage: File;
 }) => Promise<boolean>;
 
 type AuthLogoutFunction = () => void;

@@ -7,8 +7,12 @@ import { ProcessSection } from './components/ProcessSection';
 import { ReviewSection } from './components/ReviewSection';
 import { CTASection } from './components/CTASection';
 import logoImg from '@images/logo.svg';
+import { useAuth } from '@contexts/auth';
+import { buildLink } from '@components/Router';
+import { Link } from 'react-router';
 
 export function Landing() {
+  const { user } = useAuth();
   return (
     <StyledMainContainer>
       <StyledList>
@@ -16,9 +20,9 @@ export function Landing() {
           <img src={logoImg} height="20px" />
           <span> Park.me</span>
         </ListItem>
-        <ListItem component="a" href="/login">
-          Prijava
-        </ListItem>
+        <Link to={buildLink(!!user?.email ? 'dashboard' : 'login')}>
+          <ListItem sx={{ cursor: 'pointer' }}>{!!user?.email ? 'Nadzorna ploča' : 'Prijava'}</ListItem>
+        </Link>
       </StyledList>
       <HeroSection />
       <WhyUsSection />

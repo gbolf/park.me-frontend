@@ -10,10 +10,11 @@ import { buildLink } from '@router';
 export function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
-  const { values, handleSubmit, handleChange, isSubmitting } = useFormik({
-    onSubmit: (values, { setSubmitting }) => {
+
+  const { values, submitForm, handleChange, isSubmitting } = useFormik({
+    onSubmit: async (values, { setSubmitting }) => {
       setSubmitting(true);
-      if (login(values)) {
+      if (await login(values)) {
         navigate(buildLink('dashboard'));
       }
       setSubmitting(false);
@@ -28,8 +29,7 @@ export function Login() {
         <Box>
           <TextField variant="filled" label="Email" placeholder="ivan.horvat@google.com" value={values.email} onChange={handleChange} name="email" />
           <TextField variant="filled" label="Lozinka" placeholder="********" value={values.password} onChange={handleChange} name="password" type="password" />
-
-          <Button fullWidth variant="contained" onClick={() => handleSubmit()}>
+          <Button fullWidth variant="contained" onClick={submitForm}>
             Prijavi se
           </Button>
           <Button variant="text" disabled={isSubmitting} href={buildLink('register')}>
