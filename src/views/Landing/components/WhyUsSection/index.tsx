@@ -5,7 +5,7 @@ import { StyledContainer, StyledGreenContainer, StyledSubContainer, StyledSubTit
 export function WhyUsSection() {
   return (
     <Box id="zasto-mi">
-      <StyledTitle variant="h1">Zašto odabrati Park.me?</StyledTitle>
+      <StyledTitle variant="h1">Zašto baš mi?</StyledTitle>
       <StyledContainer>
         <StyledSubContainer>
           <StyledSubTitle variant="h3">Pametnije parkiranje, više uštede</StyledSubTitle>
