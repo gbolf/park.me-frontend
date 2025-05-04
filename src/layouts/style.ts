@@ -1,5 +1,5 @@
-import { styled } from '@mui/system';
-import { AppBar, avatarClasses, Box, Button, listClasses, listItemClasses, typographyClasses } from '@mui/material';
+import { styled, width } from '@mui/system';
+import { AppBar, avatarClasses, Box, Button, drawerClasses, listClasses, listItemClasses, SwipeableDrawer, typographyClasses } from '@mui/material';
 import { BASE_GLASS_STYLE, StyledBaseGlassBox } from '../components/style';
 
 export const StyledContainer = styled(Box)({
@@ -34,7 +34,7 @@ export const StyledAvatarContainer = styled(Button)({
   padding: '5px 10px',
   border: '2px solid #FFFFFF',
   boxShadow: '0px 0px 30px 2px rgba(63, 82, 59, 0.20)',
-  borderRadius:10,
+  borderRadius: 10,
   color: '#000000',
   [`& > .${avatarClasses.root}`]: {
     height: 30,
@@ -64,8 +64,15 @@ export const StyledAppbarContainer = styled(AppBar)(({ theme }) => ({
   },
   [`& .${listItemClasses.root}`]: {
     padding: 0,
-    cursor: 'pointer',
     width: 'max-content',
+    fontSize: '1.2em',
+    color: '#000000',
+    textDecoration: 'underline',
+    textDecorationColor: 'transparent',
+    transition: 'text-decoration 0.3s ease',
+    '&:hover': {
+      textDecorationColor: 'inherit',
+    },
   },
 }));
 
@@ -76,5 +83,12 @@ export const StyledSideContainer = styled(StyledBaseGlassBox)({
   zIndex: 0,
   [`& > .${typographyClasses.root}`]: {
     textAlign: 'center',
+  },
+});
+
+export const StyledDrawer = styled(SwipeableDrawer)({
+  [`& .${drawerClasses.paper}`]: {
+    ...BASE_GLASS_STYLE,
+    width: 'min(100%, 400px)',
   },
 });
