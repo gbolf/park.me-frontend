@@ -18,7 +18,7 @@ export function Landing() {
       <StyledList>
         <ListItem sx={{ gap: '10px', alignItems: 'center' }}>
           <img src={logoImg} height="20px" />
-          <span> Park.me</span>
+          <span>Park.me</span>
         </ListItem>
         <Link to={buildLink(!!user?.email ? 'dashboard' : 'login')}>
           <ListItem sx={{ cursor: 'pointer' }}>{!!user?.email ? 'Nadzorna ploča' : 'Prijava'}</ListItem>

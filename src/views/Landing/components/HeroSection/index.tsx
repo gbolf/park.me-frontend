@@ -20,8 +20,7 @@ export function HeroSection() {
       <StyledTallImage />
       <StyledCentralContainer>
         <StyledMainTitle>
-          <span>Privatno</span>
-          <span>parkiranje</span>
+          Privatno parkiranje
           <span>bez stresa!</span>
         </StyledMainTitle>
         <StyledSubTitle>Jednostavni, brzo, sigurno</StyledSubTitle>
@@ -29,7 +28,7 @@ export function HeroSection() {
         <StyledButton>Pronađi parkirno mjesto</StyledButton>
         <StyledHelperText>Dodatan popust za električna vozila</StyledHelperText>
         <StyledIconButton href="#zasto-mi">
-          <RiArrowDownLine size={60} />
+          <RiArrowDownLine size={40} />
         </StyledIconButton>
       </StyledCentralContainer>
       <StyledImagesContainer>

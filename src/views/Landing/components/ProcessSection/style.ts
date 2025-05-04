@@ -1,4 +1,4 @@
-import { styled, width } from '@mui/system';
+import { styled } from '@mui/system';
 import { Box, typographyClasses, boxClasses } from '@mui/material';
 
 export const StyledContainer = styled(Box)({
@@ -7,7 +7,7 @@ export const StyledContainer = styled(Box)({
   borderRadius: 30,
 });
 
-export const StyledStepsContainer = styled(Box)({
+export const StyledStepsContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: '50px',
@@ -22,7 +22,9 @@ export const StyledStepsContainer = styled(Box)({
     '&:nth-of-type(2n)': {
       flexDirection: 'row-reverse',
     },
-    [`& > .${boxClasses.root}`]: { width: '50%' },
+    [`& > .${boxClasses.root}`]: {
+      width: '50%',
+    },
     [`& .${typographyClasses.root}`]: {
       color: '#000000',
       fontFamily: 'Nunito Sans',
@@ -40,5 +42,13 @@ export const StyledStepsContainer = styled(Box)({
       fontSize: '25px',
       fontWeight: 400,
     },
+    [theme.breakpoints.down('md')]: {
+      '&, &:nth-of-type(2n)': {
+        flexDirection: 'column',
+      },
+      [`& > .${boxClasses.root}`]: {
+        width: '100%',
+      },
+    },
   },
-});
+}));
