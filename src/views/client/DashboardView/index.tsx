@@ -4,14 +4,14 @@ import { StyledCardContent, StyledCardMedia, StyledSideContainer, StyledCard } f
 import { useAuth } from '../../../contexts/auth';
 import { RiAddLine } from '@remixicon/react';
 import { buildLink } from '@components/Router';
-import { useMyParkings } from '@hooks/parking/queries';
+import { useBookedParkings } from '@hooks/parking/queries';
 import { Link } from 'react-router';
 
 export function Dashboard() {
   const { user } = useAuth();
 
-  const myParkingsQuery = useMyParkings();
-  const myParkings = myParkingsQuery.data;
+  const bookedParkingsQuery = useBookedParkings();
+  const bookedParkings = bookedParkingsQuery.data;
 
   return (
     <StyledSideContainer key="main-container">
@@ -23,7 +23,7 @@ export function Dashboard() {
         <Grid size={12}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <Typography variant="h3">Vaše rezervacije</Typography>
-            <Link to={buildLink("parkinglist")}>
+            <Link to={buildLink('parkinglist')}>
               <Button variant="contained" size="small" endIcon={<RiAddLine />}>
                 Rezerviraj
               </Button>
@@ -31,7 +31,7 @@ export function Dashboard() {
           </Box>
         </Grid>
         <Grid container spacing={3} size={12}>
-          {myParkings.map(({ images, title, id }) => (
+          {bookedParkings.map(({ images, title, id }) => (
             <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={id}>
               <StyledCard>
                 <Link to={buildLink('parkingOverview', { parkingId: id })}>

@@ -48,4 +48,6 @@ export const StyledCardContent = styled(CardContent)({
   boxSizing: 'border-box',
   backgroundColor: '#FFFFFF',
   zIndex: 2,
+  textOverflow: 'ellipsis',
+  overflow: 'hidden',
 });

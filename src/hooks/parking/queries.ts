@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import { PARKINGS } from './parkings';
 import { getResource } from '@common/crud';
 import { api } from '@common/api';
 import { PARKING_CATEGORIES } from '@common/parkingCategories';

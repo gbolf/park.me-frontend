@@ -2,7 +2,6 @@ import { styled } from '@mui/system';
 import { Card, CardContent, CardMedia } from '@mui/material';
 import { StyledBaseGlassBox } from '@components/style';
 
-
 export const StyledSideContainer = styled(StyledBaseGlassBox)({
   width: '100%',
   height: 'unset',
@@ -49,4 +48,6 @@ export const StyledCardContent = styled(CardContent)({
   boxSizing: 'border-box',
   backgroundColor: '#FFFFFF',
   zIndex: 2,
+  textOverflow: 'ellipsis',
+  overflow: 'hidden',
 });

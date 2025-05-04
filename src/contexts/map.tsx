@@ -71,8 +71,10 @@ function LocationCard({ title = null, image = null, onClick = null }: MarkerProp
       <Card sx={{ width: 200, position: 'absolute', top: 0, transform: 'translateY(-100%)' }}>
         <CardActionArea onClick={onClick}>
           <CardMedia component="img" height="100" image={image} />
-          <CardContent>
-            <Typography>{title}</Typography>
+          <CardContent sx={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>
+            <Typography variant="caption" noWrap title={title}>
+              {title}
+            </Typography>
           </CardContent>
         </CardActionArea>
       </Card>
