@@ -37,7 +37,7 @@ export const MapProvider = ({ children }: { children: ReactNode }) => {
       <Map
         key={`map-${isActive}`}
         ref={mapRef}
-        initialViewState={mapPostion ?? ZAGREB_LNG_LAT}
+        initialViewState={{ ...ZAGREB_LNG_LAT, ...mapPostion }}
         mapboxAccessToken={MAPBOX_API_KEY}
         style={{ ...(!isActive && { display: 'none' }), width: '100%', height: '100%', position: 'fixed', top: 0, left: 0, zIndex: 0 }}
         mapStyle={MAPBOX_STYLE}
