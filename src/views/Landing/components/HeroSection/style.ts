@@ -83,6 +83,7 @@ export const StyledSubTitle = styled(Typography)(({ theme }) => ({
 
 export const StyledButton = styled(Button)(({ theme }) => ({
   fontFamily: 'Nunito Sans',
+  cursor: 'pointer',
   fontSize: '20px',
   fontWeight: 800,
   textAlign: 'center',
@@ -90,7 +91,6 @@ export const StyledButton = styled(Button)(({ theme }) => ({
   color: '#FFFFFF',
   backgroundColor: '#3F523B',
   borderRadius: '60px',
-  zIndex: -1,
   [theme.breakpoints.down('lg')]: {
     fontSize: '18px',
   },
