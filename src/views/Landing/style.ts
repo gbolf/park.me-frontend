@@ -1,13 +1,12 @@
 import { Box, styled } from '@mui/system';
-import { List, listItemClasses, Typography, typographyClasses } from '@mui/material';
-import zIndex from '@mui/material/styles/zIndex';
+import { List, listItemClasses, Typography, typographyClasses } from '@mui/material';;
 
 export const StyledMainContainer = styled(Box)(({ theme }) => ({
   padding: '30px',
   display: 'flex',
   flexDirection: 'column',
   gap: '200px',
-  paddingTop: 80,
+  paddingTop: 60,
   [theme.breakpoints.down('md')]: {
     gap: '100px',
   },

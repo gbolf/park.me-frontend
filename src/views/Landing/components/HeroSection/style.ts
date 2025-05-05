@@ -6,7 +6,7 @@ import parkingImg from '@images/parking.jpg';
 import houseImg from '@images/house.jpg';
 
 export const StyledContainer = styled(Box)(({ theme }) => ({
-  height: 'calc(100vh - 80px)',
+  height: 'calc(100vh - 90px)',
   display: 'flex',
   justifyContent: 'space-between',
   gap: 30,

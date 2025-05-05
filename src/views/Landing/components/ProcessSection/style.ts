@@ -10,7 +10,10 @@ export const StyledContainer = styled(Box)({
 export const StyledStepsContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  gap: '50px',
+  gap: 100,
+  [theme.breakpoints.down('md')]: {
+    gap: 150,
+  },
   [`& > .${boxClasses.root}`]: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -45,6 +48,9 @@ export const StyledStepsContainer = styled(Box)(({ theme }) => ({
     [theme.breakpoints.down('md')]: {
       '&, &:nth-of-type(2n)': {
         flexDirection: 'column',
+      },
+      '& img': {
+        width: '70%',
       },
       [`& > .${boxClasses.root}`]: {
         width: '100%',
