@@ -10,7 +10,7 @@ const SECTIONS = [
   {
     img: searchBroImg,
     title: 'Pronalazak odgovarajućeg mjesta',
-    content: 'Uz našu napredno filtiranje moguće je pronaći parkirna mjesta pomoću lokacije, željenje dostupnosti cijene.',
+    content: 'Uz naše napredno filtiranje moguće je pronaći parkirna mjesta pomoću lokacije, željenje dostupnosti ili cijene.',
   },
   {
     img: cardBroImg,

@@ -33,7 +33,7 @@ export function GeneralInfo({ getProps, formik }: { getProps: ReturnType<typeof 
         />
       </Grid>
       <Grid size={{ xs: 12, md: 3 }}>
-        <Typography>Kateorije</Typography>
+        <Typography>Kategorije</Typography>
       </Grid>
       <Grid size={{ xs: 12, md: 9 }}>
         <Autocomplete
